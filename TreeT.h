@@ -50,7 +50,7 @@ private:
 
     void CopyHelper(Node*& thisTree, Node* otherTree);
 
-    bool ContainsHelper(Node* subtree, T value);
+    bool ContainsHelper(Node* subroot, T value);
     // Used for iterator
     queue<T> iterArr;     // queue used for the iterator
     void PlacePreOrder(Node* node);
