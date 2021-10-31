@@ -39,7 +39,6 @@ private:
     };
     Node* root;
     int numNodes;
-    queue<T> printQueue;
 
     // Used for de-constructor
     void DestroyTree(Node* node);
@@ -51,6 +50,7 @@ private:
 
     void CopyHelper(Node*& thisTree, Node* otherTree);
 
+    bool ContainsHelper(Node* subtree, T value);
     // Used for iterator
     queue<T> iterArr;     // queue used for the iterator
     void PlacePreOrder(Node* node);
