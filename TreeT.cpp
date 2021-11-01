@@ -78,7 +78,7 @@ void TreeT<T>::Add(T value) {
     else
         parent->right = newNode;
     */
-    ++numNodes;
+
 }
 
 template<class T>
@@ -87,11 +87,14 @@ void TreeT<T>::Insert(TreeT::Node *&subtree, T value) {
     if (subtree == nullptr) {
         subtree = new Node;
         subtree->value = value;
+        ++numNodes;
     }
     else if (value < subtree->value)
         Insert(subtree->left, value);
-    else
+    else if (value > subtree->value)
         Insert(subtree->right, value);
+    else
+        return;
 }
 
 template<class T>
