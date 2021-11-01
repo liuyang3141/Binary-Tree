@@ -176,7 +176,7 @@ void TreeT<T>::ResetIterator(Order traverseOrder) {
     else if (traverseOrder == IN_ORDER)    {
         PlaceInOrder(root);
     }
-    else
+    else if (traverseOrder == PRE_ORDER)
         PlacePreOrder(root);
 }
 
