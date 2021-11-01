@@ -24,7 +24,7 @@ TreeT<T> &TreeT<T>::operator=(const TreeT &otherTree) {
 
 template<class T>
 void TreeT<T>::Add(T value) {
-    /* Iterative implementation
+    // Iterative implementation
     Node* curr = root;
 
     while (curr != nullptr) {
@@ -38,7 +38,7 @@ void TreeT<T>::Add(T value) {
 
     curr = new Node;
     curr->value = value;
-    ++numNodes;*/
+    ++numNodes;
 }
 
 template<class T>
@@ -66,7 +66,7 @@ void TreeT<T>::DeleteNode(TreeT::Node *&subtree) {
 
     if (subtree->left == nullptr && subtree->right == nullptr)  {
         delete subtree;
-        subtree == nullptr;
+        subtree = nullptr;
     }
     else if (subtree->left == nullptr)  {
         subtree = subtree->right;
@@ -154,6 +154,9 @@ T TreeT<T>::GetNextItem() {
 
 template<class T>
 void TreeT<T>::DestroyTree(TreeT::Node *node) {
+    if (node == nullptr)
+        return;
+
     DestroyTree(node->left);
     DestroyTree(node->right);
     delete node;
@@ -161,7 +164,13 @@ void TreeT<T>::DestroyTree(TreeT::Node *node) {
 
 template<class T>
 void TreeT<T>::CopyHelper(TreeT::Node *&thisTree, TreeT::Node *otherTree) {
-    thisTree->value = otherTree->value;
+    if (otherTree->value == nullptr)    {
+        thisTree->value = nullptr;
+        return;
+    }
+    else
+        thisTree->value = otherTree->value;
+
     CopyHelper(thisTree->left, otherTree->left);
     CopyHelper(thisTree->right, otherTree->right);
 }
