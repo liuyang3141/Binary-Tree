@@ -175,16 +175,12 @@ template<class T>
 bool TreeT<T>::ContainsHelper(TreeT::Node *subroot, T value) {
     if (subroot == nullptr)
         return false;
-
-    else if (subroot->value == value)
-        return true;
-
     else if (value < subroot->value)
         return ContainsHelper(subroot->left, value);
-
-    else
+    else if (value > subroot->value)
         return ContainsHelper(subroot->right, value);
-
+    else
+        return true;
 }
 
 template<class T>
