@@ -17,27 +17,57 @@ TreeT<T> &TreeT<T>::operator=(const TreeT &otherTree) {
     if (this == &otherTree)
         return *this;
 
-    CopyHelper(this->root, &otherTree->root);
+    DestroyTree(root);
+
+    CopyHelper(this->root, otherTree.root);
+
+    this->numNodes = otherTree.numNodes;
 
     return *this;
+}
+
+template<class T>
+void TreeT<T>::CopyHelper(TreeT::Node *&thisTree, TreeT::Node *otherTree) {
+    if (otherTree == nullptr)    {
+        thisTree = nullptr;
+        return;
+    }
+
+    thisTree = new Node;
+    thisTree->value = otherTree->value;
+
+    CopyHelper(thisTree->left, otherTree->left);
+    CopyHelper(thisTree->right, otherTree->right);
 }
 
 template<class T>
 void TreeT<T>::Add(T value) {
     // Iterative implementation
     Node* curr = root;
+    Node* parent = nullptr;
 
     while (curr != nullptr) {
         if (curr-> value == value)
             return;
-        else if (value < curr->value)
+
+        parent = curr;
+
+        if (value < curr->value)
             curr = curr->left;
         else
             curr = curr->right;
     }
 
-    curr = new Node;
-    curr->value = value;
+    Node* newNode = new Node;
+    newNode->value = value;
+
+    if (root == nullptr)
+        root = newNode;
+    else if (value < parent->value)
+        parent->left = newNode;
+    else
+        parent->right = newNode;
+
     ++numNodes;
 }
 
@@ -81,6 +111,8 @@ void TreeT<T>::DeleteNode(TreeT::Node *&subtree) {
         subtree->info = data;
         RemoveHelper(subtree->left, data);
     }
+
+    --numNodes;
 }
 
 template<class T>
@@ -161,19 +193,6 @@ void TreeT<T>::DestroyTree(TreeT::Node *node) {
     DestroyTree(node->left);
     DestroyTree(node->right);
     delete node;
-}
-
-template<class T>
-void TreeT<T>::CopyHelper(TreeT::Node *&thisTree, TreeT::Node *otherTree) {
-    if (otherTree->value == nullptr)    {
-        thisTree->value = nullptr;
-        return;
-    }
-    else
-        thisTree->value = otherTree->value;
-
-    CopyHelper(thisTree->left, otherTree->left);
-    CopyHelper(thisTree->right, otherTree->right);
 }
 
 template<class T>
