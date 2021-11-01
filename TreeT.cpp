@@ -8,6 +8,14 @@ TreeT<T>::TreeT() {
 }
 
 template<class T>
+TreeT<T>::TreeT(const TreeT &otherTree) : TreeT() {
+    if (this == &otherTree)
+        return;
+
+    copyOther(otherTree);
+}
+
+template<class T>
 TreeT<T>::~TreeT() {
     DestroyTree(root);
 }
@@ -19,11 +27,15 @@ TreeT<T> &TreeT<T>::operator=(const TreeT &otherTree) {
 
     DestroyTree(root);
 
-    CopyHelper(this->root, otherTree.root);
-
-    this->numNodes = otherTree.numNodes;
+    CopyOther(otherTree);
 
     return *this;
+}
+
+template<class T>
+void TreeT<T>::copyOther(TreeT &otherTree) {
+    CopyHelper(this->root, otherTree.root);
+    this->numNodes = otherTree.numNodes;
 }
 
 template<class T>
@@ -226,5 +238,9 @@ void TreeT<T>::PlaceInOrder(TreeT::Node *node) {
     iterArr.push(node->value);
     PlaceInOrder(node->right);
 }
+
+
+
+
 
 

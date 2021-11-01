@@ -17,6 +17,7 @@ template<class T>
 class TreeT {
 public:
     TreeT();
+    TreeT(const TreeT& otherTree);
     ~TreeT();
 
     TreeT& operator=(const TreeT& otherTree);
@@ -40,6 +41,7 @@ private:
     Node* root;
     int numNodes;
 
+    void copyOther(TreeT& otherTree);
     // Used for de-constructor
     void DestroyTree(Node* node);
 
