@@ -89,6 +89,9 @@ template<class T>
 void TreeT<T>::RemoveHelper(TreeT::Node *&subtree, T value) {
     // this function searches for where the value is in the tree
     // if it's not on the right or the left, then we've found it, then call DeleteNode()
+    if (subtree == nullptr)
+        return;
+
     if (value < subtree->value)
         RemoveHelper(subtree->left, value);
     else if (value > subtree->value)
@@ -100,8 +103,7 @@ void TreeT<T>::RemoveHelper(TreeT::Node *&subtree, T value) {
 template<class T>
 void TreeT<T>::DeleteNode(TreeT::Node *&subtree) {
     T data;
-    Node* tempPtr;
-    tempPtr = subtree;
+    Node* tempPtr = subtree;
 
     if (subtree->left == nullptr && subtree->right == nullptr)  {
         delete subtree;
@@ -117,7 +119,7 @@ void TreeT<T>::DeleteNode(TreeT::Node *&subtree) {
     }
     else    {
         GetPredecessor(subtree->left, data);
-        subtree->info = data;
+        subtree->value = data;
         RemoveHelper(subtree->left, data);
     }
 
