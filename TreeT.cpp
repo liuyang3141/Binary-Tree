@@ -23,7 +23,7 @@ TreeT<T> &TreeT<T>::operator=(const TreeT &otherTree) {
         return *this;
 
     DestroyTree(root);
-
+    numNodes = 0;
     copyOther(otherTree);
 
     return *this;
@@ -51,7 +51,8 @@ void TreeT<T>::CopyHelper(TreeT::Node *&thisTree, TreeT::Node *otherTree) {
 
 template<class T>
 void TreeT<T>::Add(T value) {
-    // Iterative implementation
+    Insert(root, value);
+    /* Iterative implementation
     Node* curr = root;
     Node* parent = nullptr;
 
@@ -76,8 +77,21 @@ void TreeT<T>::Add(T value) {
         parent->left = newNode;
     else
         parent->right = newNode;
-
+    */
     ++numNodes;
+}
+
+template<class T>
+void TreeT<T>::Insert(TreeT::Node *&subtree, T value) {
+
+    if (subtree == nullptr) {
+        subtree = new Node;
+        subtree->value = value;
+    }
+    else if (value < subtree->value)
+        Insert(subtree->left, value);
+    else
+        Insert(subtree->right, value);
 }
 
 template<class T>
