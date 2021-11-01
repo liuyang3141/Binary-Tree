@@ -27,13 +27,13 @@ TreeT<T> &TreeT<T>::operator=(const TreeT &otherTree) {
 
     DestroyTree(root);
 
-    CopyOther(otherTree);
+    copyOther(otherTree);
 
     return *this;
 }
 
 template<class T>
-void TreeT<T>::copyOther(TreeT &otherTree) {
+void TreeT<T>::copyOther(const TreeT &otherTree) {
     CopyHelper(this->root, otherTree.root);
     this->numNodes = otherTree.numNodes;
 }

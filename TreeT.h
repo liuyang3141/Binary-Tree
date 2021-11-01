@@ -41,7 +41,7 @@ private:
     Node* root;
     int numNodes;
 
-    void copyOther(TreeT& otherTree);
+    void copyOther(const TreeT& otherTree);
     // Used for de-constructor
     void DestroyTree(Node* node);
 
