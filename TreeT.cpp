@@ -19,12 +19,10 @@ TreeT<T>::~TreeT() {
 
 template<class T>
 TreeT<T> &TreeT<T>::operator=(const TreeT &otherTree) {
-    if (this == &otherTree)
-        return *this;
-
-    DestroyTree(root);
-    numNodes = 0;
-    copyOther(otherTree);
+    if (this != &otherTree) {
+        DestroyTree(root);
+        copyOther(otherTree);
+    }
 
     return *this;
 }
@@ -78,7 +76,6 @@ void TreeT<T>::Add(T value) {
     else
         parent->right = newNode;
     */
-
 }
 
 template<class T>
