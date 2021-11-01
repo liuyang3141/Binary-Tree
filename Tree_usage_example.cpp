@@ -4,15 +4,23 @@
 
 #include <iostream>
 #include "TreeT.h"
+#include <queue>
 
 int main(void) {
 
     TreeT<int> treeA;
-    ///
+    treeA.Add(10);
+    treeA.Add(2);
 
     TreeT<int> treeB;
 
     treeB = treeA;
+
+    treeB.ResetIterator(IN_ORDER);
+    for (int i = 0; i < treeB.Size(); i++) {
+        cout << treeB.GetNextItem() << " ";
+    }
+    cout << endl;
 
     TreeT<int>* tree = new TreeT<int>;
 
