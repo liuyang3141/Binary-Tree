@@ -9,9 +9,6 @@ TreeT<T>::TreeT() {
 
 template<class T>
 TreeT<T>::TreeT(const TreeT &otherTree) : TreeT() {
-    if (this == &otherTree)
-        return;
-
     copyOther(otherTree);
 }
 
