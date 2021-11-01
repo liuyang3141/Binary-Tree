@@ -167,11 +167,13 @@ int TreeT<T>::Size() {
 
 template<class T>
 void TreeT<T>::ResetIterator(Order traverseOrder) {
-    iterArr.empty();
-    if (traverseOrder == 0) {
+    while(!iterArr.empty())
+        iterArr.pop();
+
+    if (traverseOrder == POST_ORDER) {
         PlacePostOrder(root);
     }
-    else if (traverseOrder == 1)    {
+    else if (traverseOrder == IN_ORDER)    {
         PlaceInOrder(root);
     }
     else
