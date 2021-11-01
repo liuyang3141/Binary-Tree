@@ -194,9 +194,6 @@ int TreeT<T>::Size() {
 
 template<class T>
 void TreeT<T>::ResetIterator(Order traverseOrder) {
-    if (root == nullptr)
-        throw "Tree is empty";
-
     while(!iterArr.empty())
         iterArr.pop();
 
