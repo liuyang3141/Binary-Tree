@@ -144,12 +144,13 @@ void TreeT<T>::ResetIterator(Order traverseOrder) {
     }
     else
         PlacePreOrder(root);
-
 }
 
 template<class T>
 T TreeT<T>::GetNextItem() {
-    return nullptr;
+    T value = iterArr.front();
+    iterArr.pop();
+    return value;
 }
 
 template<class T>
