@@ -91,8 +91,7 @@ void TreeT<T>::RemoveHelper(TreeT::Node *&subtree, T value) {
     // if it's not on the right or the left, then we've found it, then call DeleteNode()
     if (subtree == nullptr)
         return;
-
-    if (value < subtree->value)
+    else if (value < subtree->value)
         RemoveHelper(subtree->left, value);
     else if (value > subtree->value)
         RemoveHelper(subtree->right, value);
